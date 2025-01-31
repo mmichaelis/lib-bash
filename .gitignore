@@ -1,0 +1,137 @@
+# ==============================================================================
+# General
+# ==============================================================================
+
+## Temporary Files
+
+/tmp/
+
+## Logs & Output
+
+*.log
+*.log.*
+*.out
+
+# ==============================================================================
+# IDE Specific
+#
+# Ignore typical user/system specific files and directories for IDEs.
+# Include those, which are recommended to be shared between developers.
+# ==============================================================================
+
+## Eclipse
+
+.project
+.classpath
+.settings/
+.apt_generated/
+.factorypath
+.metadata/
+.recommenders/
+
+## JetBrains IntelliJ IDEA
+
+.idea/*
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/workspace.xml
+!.idea/runConfigurations/
+*.iml
+
+## VSCode
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ==============================================================================
+# Application Specific
+# ==============================================================================
+
+## CUrl
+
+*.swp
+
+## Fortran
+
+*.mod
+*.o
+*.obj
+*.exe
+
+## Git
+
+*.diff
+*.patch
+*.orig
+*.merge_file_*
+
+## Gradle
+
+.gradle/
+build/
+
+## Java
+
+hs_err_pid*
+
+## LaTeX
+
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.synctex.gz
+*.toc
+
+## Maven
+
+target/
+
+## Node.js
+
+node_modules/
+dist/
+
+## Python
+
+__pycache__/
+*.py[codwz]
+
+## WGet
+
+*.wget-hsts
+
+# ==============================================================================
+# OS Specific
+# ==============================================================================
+
+## Linux
+
+.DS_Store
+.AppleDouble
+.LSOverride
+*~
+
+## macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+## Windows
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+$Recycle.Bin/

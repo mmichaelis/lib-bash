@@ -1,0 +1,5 @@
+# Ensure consistent line endings for all text files
+* text=auto eol=lf
+
+# Exceptions for files that require different line endings
+*.bat text eol=crlf
