@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-###
-### File: .git/hooks/pre_commit
-###
-### Created from template hooks/pre-commit.template
-###
-
