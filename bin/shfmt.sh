@@ -16,28 +16,17 @@ SCRIPT_DIR="$(dirname "${MY_PATH}")"
 readonly SCRIPT_DIR
 
 readonly LIB_DIR="${SCRIPT_DIR}/.."
-# Find all shell scripts in the directory
-LIBS=$(find "${LIB_DIR}" -type f -name "*.sh" -not -path "${LIB_DIR}/tests/bats/*")
-readonly LIBS
 
 # Function to check formatting
 check_format() {
   cd "${LIB_DIR}"
   shfmt --diff .
-  #  for file in ${LIBS}; do
-  #    if ! shfmt --diff --filename "${file}"; then
-  #      echo "File ${file} is not properly formatted."
-  #      echo "Please install shfmt. Fore more information, visit: https://github.com/mvdan/sh" >&2
-  #      return 1
-  #    fi
-  #  done
 }
 
 # Function to fix formatting
 fix_format() {
-  for file in ${LIBS}; do
-    shfmt --write --filename "${file}"
-  done
+  cd "${LIB_DIR}"
+  shfmt --write .
 }
 
 # Main script
