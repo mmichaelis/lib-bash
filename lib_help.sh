@@ -24,13 +24,13 @@ source "${LIB_HELP_DIR}/lib_init.sh"
 # shellcheck source=/dev/null
 source "${LIB_HELP_DIR}/lib_console.sh"
 
-help() {
+print_help() {
   local error_text="${1:-}"
 
   if [[ -n "${error_text}" ]]; then
     # Must use pipe here, to avoid the subsequent check for pipe input
     # to be triggered accidentally, if `help` is called from a pipe.
-    echo -e "${error_text}" | error
+    echo -e "${error_text}" | log_error
     echo >&2
   fi
 

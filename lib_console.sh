@@ -144,7 +144,7 @@ function _log() {
 # Output:
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
-function debug() {
+function log_debug() {
   if ((DEBUG > 0)); then
     if [[ -t 2 ]]; then
       _log "${COLOR_GRAY}[DEBUG] " "${COLOR_RESET}" "$@"
@@ -172,7 +172,7 @@ function debug() {
 # Output:
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
-function info() {
+function log_info() {
   _log "[INFO] " "" "$@"
 }
 
@@ -189,7 +189,7 @@ function info() {
 # Output:
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
-function warn() {
+function log_warn() {
   if [[ -t 2 ]]; then
     _log "${COLOR_LIGHT_YELLOW}[WARNING] " "${COLOR_RESET}" "$@"
   else
@@ -210,7 +210,7 @@ function warn() {
 # Output:
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
-function error() {
+function log_error() {
   if [[ -t 2 ]]; then
     _log "${COLOR_LIGHT_RED}[ERROR] " "${COLOR_RESET}" "$@"
   else
@@ -231,7 +231,7 @@ function error() {
 # Output:
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
-function fatal() {
+function log_fatal() {
   if [[ -t 2 ]]; then
     _log "${COLOR_BG_RED}${COLOR_LIGHT_YELLOW}[FATAL] " "${COLOR_RESET}" "$@"
   else
