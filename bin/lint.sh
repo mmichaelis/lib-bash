@@ -16,7 +16,7 @@ readonly SCRIPT_DIR
 
 LIB_DIR="${SCRIPT_DIR}/.."
 # Find all shell scripts in the directory
-LIBS=$(find "${LIB_DIR}" -name "lib_*.sh")
+LIBS=$(find "${LIB_DIR}" -name "*.sh")
 
 # Run shellcheck on each script
 for script in ${LIBS}; do

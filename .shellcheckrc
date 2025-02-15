@@ -3,3 +3,5 @@ enable=all
 
 # Set the shell dialect to bash
 shell=bash
+
+source-path=.
