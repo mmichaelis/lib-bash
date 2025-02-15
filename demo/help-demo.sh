@@ -22,11 +22,11 @@ readonly SEPARATOR
 
 echo "${SEPARATOR}"
 
-(echo "Help for pipe usage without error." | help)
+(echo "Help for pipe usage without error." | print_help)
 
 echo "${SEPARATOR}"
 
-(echo "Help for pipe usage with error." | help "Example error message.")
+(echo "Help for pipe usage with error." | print_help "Example error message.")
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Multi-Line)
@@ -34,14 +34,14 @@ echo "${SEPARATOR}"
 
 echo "${SEPARATOR}"
 
-cat <<EOF | (help)
+cat <<EOF | (print_help)
 Help for HERE document pipe usage without error.
 Using indirection via 'cat'.
 EOF
 
 echo "${SEPARATOR}"
 
-cat <<EOF | (help "Example error message.")
+cat <<EOF | (print_help "Example error message.")
 Help for HERE document pipe usage with error.
 Using indirection via 'cat'.
 EOF
@@ -49,7 +49,7 @@ EOF
 echo "${SEPARATOR}"
 
 (
-  help <<EOF
+  print_help <<EOF
 Help for HERE document pipe usage without error.
 Using direct call.
 EOF
@@ -58,7 +58,7 @@ EOF
 echo "${SEPARATOR}"
 
 (
-help "Example error message" << EOF
+  print_help "Example error message" <<EOF
 Help for HERE document pipe usage with error.
 Using direct call.
 EOF

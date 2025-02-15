@@ -12,47 +12,47 @@ source "${SCRIPT_DIR}/../lib_console.sh"
 # Function Usage
 # ------------------------------------------------------------------------------
 
-debug "This is a debug message."
-info "This is an info message."
-warn "This is a warning message."
-error "This is an error message."
-fatal "This is a fatal message."
+log_debug "This is a debug message."
+log_info "This is an info message."
+log_warn "This is a warning message."
+log_error "This is an error message."
+log_fatal "This is a fatal message."
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Single Line)
 # ------------------------------------------------------------------------------
 
-echo "This is a debug message." | debug
-echo "This is an info message." | info
-echo "This is a warning message." | warn
-echo "This is an error message." | error
-echo "This is a fatal message." | fatal
+echo "This is a debug message." | log_debug
+echo "This is an info message." | log_info
+echo "This is a warning message." | log_warn
+echo "This is an error message." | log_error
+echo "This is a fatal message." | log_fatal
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Multi-Line)
 # ------------------------------------------------------------------------------
 
-cat <<EOF | debug
+cat <<EOF | log_debug
 This is a debug message.
 This is the second line.
 EOF
 
-cat <<EOF | info
+cat <<EOF | log_info
 This is an info message.
 This is the second line.
 EOF
 
-cat <<EOF | warn
+cat <<EOF | log_warn
 This is a warning message.
 This is the second line.
 EOF
 
-cat <<EOF | error
+cat <<EOF | log_error
 This is an error message.
 This is the second line.
 EOF
 
-cat <<EOF | fatal
+cat <<EOF | log_fatal
 This is a fatal message.
 This is the second line.
 EOF
