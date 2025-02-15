@@ -20,50 +20,22 @@ readonly LIB_HELP_DIR
 source "${LIB_HELP_DIR}/lib_init.sh"
 source "${LIB_HELP_DIR}/lib_console.sh"
 
-# ------------------------------------------------------------------------------
-# Output Help Text
-#
-# Print the help text to the standard output. The help text can either be
-# provided as a here document or as string. As optional first argument,
-# an error text can be provided, which is printed to the standard error
-# output before the help text (with one empty line in between).
-#
-# Arguments:
-#   $1 - Error text (optional)
-#   $2 - Help text (optional)
-# Returns:
-#   None
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-# Output Help Text
-#
-# Print the help text to the standard output. The help text can either be
-# provided as a here document or as string. As optional first argument,
-# an error text can be provided, which is printed to the standard error
-# output before the help text (with one empty line in between).
-#
-# Arguments:
-#   $1 - Error text
-#   $2 - Help text
-# Returns:
-#   None
-# ------------------------------------------------------------------------------
-_help() {
-  local error_text="${1?Error text must be provided}"
-
-  shift
+help() {
+  local error_text="${1:-}"
 
   if [[ -n "${error_text}" ]]; then
-    error "${error_text}"
-    echo
+    # Must use pipe here, to avoid the subsequent check for pipe input
+    # to be triggered accidentally, if `help` is called from a pipe.
+    echo -e "${error_text}" | error
+    echo >&2
   fi
 
   if [[ -p /dev/stdin ]]; then
     while IFS= read -r line || [[ -n "$line" ]]; do
-      echo -e "${line}"
+      echo -e "${line}" >&2
     done
   else
-    echo -e "${*}"
+    echo -e "${*}" >&2
   fi
 
   if [[ -n "${error_text}" ]]; then
@@ -71,14 +43,4 @@ _help() {
   else
     exit 0
   fi
-}
-
-help() {
-  _help "" "${@}"
-}
-
-error_and_help() {
-  local error_text="${1?Error text must be provided}"
-  shift
-  _help "${error_text}" "${@}"
 }

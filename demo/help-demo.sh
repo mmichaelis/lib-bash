@@ -11,30 +11,55 @@ source "${SCRIPT_DIR}/../lib_help.sh"
 # For demo purpose don't exit on error
 set +o errexit
 
-# ------------------------------------------------------------------------------
-# Function Usage
-# ------------------------------------------------------------------------------
-
-(help "Just some help text.")
-(error_and_help "A demo error occurred." "Just some help text.")
+readonly TERM_WIDTH="$(tput cols)"
+readonly SEPARATOR="$(printf "%${TERM_WIDTH}s" | tr ' ' '-')"
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Single Line)
 # ------------------------------------------------------------------------------
 
-(echo "Just some help text." | help)
-(echo "Just some help text." | error_and_help "A demo error occurred.")
+echo "${SEPARATOR}"
+
+(echo "Help for pipe usage without error." | help)
+
+echo "${SEPARATOR}"
+
+(echo "Help for pipe usage with error." | help "Example error message.")
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Multi-Line)
 # ------------------------------------------------------------------------------
 
+echo "${SEPARATOR}"
+
 cat <<EOF | (help)
-Just some help text.
-This is the second line.
+Help for HERE document pipe usage without error.
+Using indirection via 'cat'.
 EOF
 
-cat <<EOF | (error_and_help "A demo error occurred.")
-Just some help text.
-This is the second line.
+echo "${SEPARATOR}"
+
+cat <<EOF | (help "Example error message.")
+Help for HERE document pipe usage with error.
+Using indirection via 'cat'.
 EOF
+
+echo "${SEPARATOR}"
+
+(
+  help <<EOF
+Help for HERE document pipe usage without error.
+Using direct call.
+EOF
+)
+
+echo "${SEPARATOR}"
+
+(
+help "Example error message" << EOF
+Help for HERE document pipe usage with error.
+Using direct call.
+EOF
+)
+
+echo "${SEPARATOR}"
