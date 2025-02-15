@@ -8,6 +8,7 @@
     "SCRIPTINFO",
     "SETEXT",
     "shellcheck",
+    "shfmt",
     "tput"
   ]
 }
