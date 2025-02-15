@@ -21,8 +21,14 @@ setup() {
   assert_output "[DEBUG] This is a debug message"
 }
 
-@test "info function outputs info message" {
+@test "info function outputs info message (function usage)" {
   run info "This is an info message"
+  assert_success
+  assert_output "[INFO] This is an info message"
+}
+
+@test "info function outputs info message (piped usage)" {
+  run echo "This is an info message" | info
   assert_success
   assert_output "[INFO] This is an info message"
 }
