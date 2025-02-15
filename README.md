@@ -20,7 +20,7 @@ All libraries are meant to embedded in a similar way. The following applies
 best practices according to spellcheck:
 
 ```bash
-MY_PATH="$(realpath "${BASH_SOURCE[0]}"
+MY_PATH="$(realpath "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(dirname "${MY_PATH}")"
 readonly MY_PATH
 readonly SCRIPT_DIR
