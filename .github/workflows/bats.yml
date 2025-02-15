@@ -22,4 +22,7 @@ jobs:
           submodules: recursive
 
       - name: Run Bats tests
-        run: ./tests/bats/bin/bats ./tests
+        env:
+          TERM: linux
+        run: |
+          bash -c "./tests/bats/bin/bats --print-output-on-failure ./tests"
