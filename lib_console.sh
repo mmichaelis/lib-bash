@@ -17,6 +17,7 @@ LIB_CONSOLE_SH_INCLUDED=1
 
 LIB_CONSOLE_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 readonly LIB_CONSOLE_DIR
+# shellcheck source=/dev/null
 source "${LIB_CONSOLE_DIR}/lib_init.sh"
 
 # ------------------------------------------------------------------------------
@@ -51,6 +52,35 @@ readonly COLOR_BG_BLUE="\033[44m"
 readonly COLOR_BG_MAGENTA="\033[45m"
 readonly COLOR_BG_CYAN="\033[46m"
 readonly COLOR_BG_WHITE="\033[47m"
+
+# Export Color and Color Background Constants
+
+export COLOR_RESET
+export COLOR_BLACK
+export COLOR_RED
+export COLOR_GREEN
+export COLOR_YELLOW
+export COLOR_BLUE
+export COLOR_MAGENTA
+export COLOR_CYAN
+export COLOR_WHITE
+export COLOR_GRAY
+export COLOR_LIGHT_RED
+export COLOR_LIGHT_GREEN
+export COLOR_LIGHT_YELLOW
+export COLOR_LIGHT_BLUE
+export COLOR_LIGHT_MAGENTA
+export COLOR_LIGHT_CYAN
+export COLOR_LIGHT_WHITE
+
+export COLOR_BG_BLACK
+export COLOR_BG_RED
+export COLOR_BG_GREEN
+export COLOR_BG_YELLOW
+export COLOR_BG_BLUE
+export COLOR_BG_MAGENTA
+export COLOR_BG_CYAN
+export COLOR_BG_WHITE
 
 # ------------------------------------------------------------------------------
 # Logging

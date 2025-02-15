@@ -17,7 +17,9 @@ LIB_HELP_SH_INCLUDED=1
 
 LIB_HELP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 readonly LIB_HELP_DIR
+# shellcheck source=/dev/null
 source "${LIB_HELP_DIR}/lib_init.sh"
+# shellcheck source=/dev/null
 source "${LIB_HELP_DIR}/lib_console.sh"
 
 help() {
