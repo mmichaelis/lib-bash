@@ -15,7 +15,12 @@ if [[ -n "${LIB_CONSOLE_SH_INCLUDED:-}" ]]; then
 fi
 LIB_CONSOLE_SH_INCLUDED=1
 
-LIB_CONSOLE_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+# Initialize DEBUG variable if not already set
+: "${DEBUG:=0}"
+
+LIB_CONSOLE_PATH="$(realpath "${BASH_SOURCE[0]}")"
+readonly LIB_CONSOLE_PATH
+LIB_CONSOLE_DIR="$(dirname "${LIB_CONSOLE_PATH}")"
 readonly LIB_CONSOLE_DIR
 # shellcheck source=/dev/null
 source "${LIB_CONSOLE_DIR}/lib_init.sh"
@@ -115,7 +120,7 @@ function _log() {
   shift 2
 
   if [[ -p /dev/stdin ]]; then
-    while IFS= read -r line || [[ -n "$line" ]]; do
+    while IFS= read -r line || [[ -n "${line}" ]]; do
       echo -e "${prefix}${line}${suffix}" >&2
     done
   else
@@ -245,7 +250,7 @@ function fatal() {
 #   The colored input is printed to STDOUT.
 function ccat() {
   local line
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    echo -e "$line"
+  while IFS= read -r line || [[ -n "${line}" ]]; do
+    echo -e "${line}"
   done
 }

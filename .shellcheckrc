@@ -1,0 +1,5 @@
+# Enable all optional checks
+enable=all
+
+# Set the shell dialect to bash
+shell=bash

@@ -15,7 +15,9 @@ if [[ -n "${LIB_HELP_SH_INCLUDED:-}" ]]; then
 fi
 LIB_HELP_SH_INCLUDED=1
 
-LIB_HELP_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+LIB_HELP_PATH="$(realpath "${BASH_SOURCE[0]}")"
+readonly LIB_HELP_PATH
+LIB_HELP_DIR="$(dirname "${LIB_HELP_PATH}")"
 readonly LIB_HELP_DIR
 # shellcheck source=/dev/null
 source "${LIB_HELP_DIR}/lib_init.sh"
@@ -33,7 +35,7 @@ help() {
   fi
 
   if [[ -p /dev/stdin ]]; then
-    while IFS= read -r line || [[ -n "$line" ]]; do
+    while IFS= read -r line || [[ -n "${line}" ]]; do
       echo -e "${line}" >&2
     done
   else

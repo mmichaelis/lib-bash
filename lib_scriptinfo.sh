@@ -15,7 +15,9 @@ if [[ -n "${LIB_SCRIPTINFO_SH_INCLUDED:-}" ]]; then
 fi
 LIB_SCRIPTINFO_SH_INCLUDED=1
 
-LIB_SCRIPTINFO_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+LIB_SCRIPTINFO_PATH="$(realpath "${BASH_SOURCE[0]}")"
+readonly LIB_SCRIPTINFO_PATH
+LIB_SCRIPTINFO_DIR="$(dirname "${LIB_SCRIPTINFO_PATH}")"
 readonly LIB_SCRIPTINFO_DIR
 # shellcheck source=/dev/null
 source "${LIB_SCRIPTINFO_DIR}/lib_init.sh"

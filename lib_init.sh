@@ -17,6 +17,7 @@ LIB_INIT_SH_INCLUDED=1
 
 # Provide option to trigger debug output with different verbosity levels.
 declare -ri DEBUG=${DEBUG:-0}
+export DEBUG
 
 # ------------------------------------------------------------------------------
 # Bash Options
