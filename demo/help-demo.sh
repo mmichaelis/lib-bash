@@ -11,8 +11,10 @@ source "${SCRIPT_DIR}/../lib_help.sh"
 # For demo purpose don't exit on error
 set +o errexit
 
-readonly TERM_WIDTH="$(tput cols)"
-readonly SEPARATOR="$(printf "%${TERM_WIDTH}s" | tr ' ' '-')"
+TERM_WIDTH="$(tput cols)"
+SEPARATOR="$(printf "%${TERM_WIDTH}s" | tr ' ' '-')"
+readonly TERM_WIDTH
+readonly SEPARATOR
 
 # ------------------------------------------------------------------------------
 # Pipe Usage (Single Line)
