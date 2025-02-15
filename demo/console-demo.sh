@@ -56,3 +56,33 @@ cat <<EOF | fatal
 This is a fatal message.
 This is the second line.
 EOF
+
+# ------------------------------------------------------------------------------
+# Usage Examples Color Constants
+# ------------------------------------------------------------------------------
+
+ccat <<EOF
+${COLOR_BLACK}This is black text.${COLOR_RESET}
+${COLOR_RED}This is red text.${COLOR_RESET}
+${COLOR_GREEN}This is green text.${COLOR_RESET}
+${COLOR_YELLOW}This is yellow text.${COLOR_RESET}
+${COLOR_BLUE}This is blue text.${COLOR_RESET}
+${COLOR_MAGENTA}This is magenta text.${COLOR_RESET}
+${COLOR_CYAN}This is cyan text.${COLOR_RESET}
+${COLOR_WHITE}This is white text.${COLOR_RESET}
+EOF
+
+# ------------------------------------------------------------------------------
+# Usage Examples Color Background Constants
+# ------------------------------------------------------------------------------
+
+ccat <<EOF
+${COLOR_BG_BLACK}This is black background.${COLOR_RESET}
+${COLOR_BG_RED}This is red background.${COLOR_RESET}
+${COLOR_BG_GREEN}This is green background.${COLOR_RESET}
+${COLOR_BG_YELLOW}This is yellow background.${COLOR_RESET}
+${COLOR_BG_BLUE}This is blue background.${COLOR_RESET}
+${COLOR_BG_MAGENTA}This is magenta background.${COLOR_RESET}
+${COLOR_BG_CYAN}This is cyan background.${COLOR_RESET}
+${COLOR_BG_WHITE}This is white background.${COLOR_RESET}
+EOF

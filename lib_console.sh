@@ -203,3 +203,19 @@ function fatal() {
     _log "[FATAL] " "" "$@"
   fi
 }
+
+# ------------------------------------------------------------------------------
+# Alternative to `cat` that also processes colored input.
+#
+# Arguments:
+#   None
+# Returns:
+#   None
+# Output:
+#   The colored input is printed to STDOUT.
+function ccat() {
+  local line
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    echo -e "$line"
+  done
+}
