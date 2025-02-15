@@ -1,6 +1,7 @@
 # Enable all optional checks
 enable=all
-
+# Enable all severity levels
+severity=all
 # Set the shell dialect to bash
 shell=bash
 

@@ -32,27 +32,27 @@ echo "This is a fatal message." | log_fatal
 # Pipe Usage (Multi-Line)
 # ------------------------------------------------------------------------------
 
-cat <<EOF | log_debug
+cat << EOF | log_debug
 This is a debug message.
 This is the second line.
 EOF
 
-cat <<EOF | log_info
+cat << EOF | log_info
 This is an info message.
 This is the second line.
 EOF
 
-cat <<EOF | log_warn
+cat << EOF | log_warn
 This is a warning message.
 This is the second line.
 EOF
 
-cat <<EOF | log_error
+cat << EOF | log_error
 This is an error message.
 This is the second line.
 EOF
 
-cat <<EOF | log_fatal
+cat << EOF | log_fatal
 This is a fatal message.
 This is the second line.
 EOF
@@ -61,7 +61,7 @@ EOF
 # Usage Examples Color Constants
 # ------------------------------------------------------------------------------
 
-ccat <<EOF
+ccat << EOF
 ${COLOR_BLACK}This is black text.${COLOR_RESET}
 ${COLOR_RED}This is red text.${COLOR_RESET}
 ${COLOR_GREEN}This is green text.${COLOR_RESET}
@@ -76,7 +76,7 @@ EOF
 # Usage Examples Color Background Constants
 # ------------------------------------------------------------------------------
 
-ccat <<EOF
+ccat << EOF
 ${COLOR_BG_BLACK}This is black background.${COLOR_RESET}
 ${COLOR_BG_RED}This is red background.${COLOR_RESET}
 ${COLOR_BG_GREEN}This is green background.${COLOR_RESET}
