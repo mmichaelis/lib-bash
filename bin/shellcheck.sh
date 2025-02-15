@@ -5,7 +5,7 @@ set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
 # Check if shellcheck is installed
-if ! command -v shellcheck &>/dev/null; then
+if ! command -v shellcheck &> /dev/null; then
   echo "Error: shellcheck is not installed." >&2
   echo "Please install shellcheck. For more information, visit: https://www.shellcheck.net/" >&2
   exit 1
