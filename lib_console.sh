@@ -115,16 +115,17 @@ export COLOR_BG_WHITE
 #   The message is printed to STDERR.
 # ------------------------------------------------------------------------------
 function _log() {
-  local prefix="$1"
-  local suffix="$2"
-  shift 2
+  local prefix="${1}"
+  local suffix="${2}"
+  local message
+  message="${3:-$(</dev/stdin)}"
 
-  if [[ -p /dev/stdin ]]; then
+  if [[ -n "${message}" ]]; then
+    #    echo -e "${prefix}${message}${suffix}" >&2
+    # Iterate over lines and apply pre- and suffix to each line
     while IFS= read -r line || [[ -n "${line}" ]]; do
       echo -e "${prefix}${line}${suffix}" >&2
-    done
-  else
-    echo -e "${prefix}${*}${suffix}" >&2
+    done <<<"${message}"
   fi
 }
 
@@ -152,9 +153,10 @@ function log_debug() {
       _log "[DEBUG] " "" "$@"
     fi
   else
-    # Consume and discard the input to prevent SIGPIPE
-    if [[ -p /dev/stdin ]]; then
-      while IFS= read -r line; do :; done
+    # Consume and discard the input to prevent SIGPIPE. Only do this, if no
+    # arguments are given.
+    if [[ "${#}" -eq 0 ]]; then
+      cat >/dev/null
     fi
   fi
 }
@@ -249,8 +251,6 @@ function log_fatal() {
 # Output:
 #   The colored input is printed to STDOUT.
 function ccat() {
-  local line
-  while IFS= read -r line || [[ -n "${line}" ]]; do
-    echo -e "${line}"
-  done
+  local content="${1:-$(</dev/stdin)}"
+  echo -e "${content}"
 }
