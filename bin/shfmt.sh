@@ -5,7 +5,7 @@ set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
 # Check if shfmt is installed
-if ! command -v shfmt &> /dev/null; then
+if ! command -v shfmt &>/dev/null; then
   echo "Error: shfmt is not installed." >&2
   exit 1
 fi
