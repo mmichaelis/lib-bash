@@ -21,5 +21,5 @@ switch_case_indent = true
 space_redirects = true
 apply_ignore = true
 
-[tests/**]
+[lib/**]
 ignore = true
