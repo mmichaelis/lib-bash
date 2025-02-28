@@ -8,5 +8,5 @@
 	path = lib/test/bats/assert
 	url = https://github.com/bats-core/bats-assert.git
 [submodule "tests/test_helper/bats-file"]
-	path = tests/test_helper/bats-file
+	path = lib/test/bats/file
 	url = https://github.com/bats-core/bats-file.git
