@@ -28,9 +28,7 @@ print_help() {
   local error_text="${1:-}"
 
   if [[ -n "${error_text}" ]]; then
-    # Must use pipe here, to avoid the subsequent check for pipe input
-    # to be triggered accidentally, if `help` is called from a pipe.
-    echo -e "${error_text}" | log_error
+    log_error "${error_text}"
     echo >&2
   fi
 
