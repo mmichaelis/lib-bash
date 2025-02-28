@@ -26,4 +26,4 @@ jobs:
         env:
           TERM: linux
         run: |
-          bash -c "./tests/bats/bin/bats --print-output-on-failure ./tests"
+          bash -c "./lib/test/bats/core/bin/bats --print-output-on-failure ./tests"
