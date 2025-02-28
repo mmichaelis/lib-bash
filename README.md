@@ -9,7 +9,6 @@ A set of libraries to use from within your Bash scripts.
 * [Library Usage Pattern](#library-usage-pattern)
 * [Libraries](#libraries)
   * [lib_console](#lib_init)
-  * [lib_help](#lib_help)
   * [lib_init](#lib_init)
   * [lib_scriptinfo](#lib_scriptinfo)
 * [Installation](#installation)
@@ -49,24 +48,6 @@ grep "pattern" file.txt | log_debug
 ccat <<EOF
 ${COLOR_RED}This is red text.${COLOR_RESET}
 ${COLOR_YELLOW}This is yellow text.${COLOR_RESET}
-EOF
-```
-
-### lib_help
-
-Assistive functions for help output in Bash scripts. `print_help` will always
-trigger to exit the program with zero exit-status with no error message and a
-non-zero exit-status if a non-empty error message is provided.
-
-**Usage Examples**:
-
-```bash
-print_help <<EOF
-Help for HERE document pipe usage without error.
-EOF
-
-print_help "Error Message" <<EOF
-Help test for 'correct usage'.
 EOF
 ```
 
