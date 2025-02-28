@@ -10,7 +10,7 @@ readonly MY_PATH
 MY_DIR="$(dirname "${MY_PATH}")"
 readonly MY_DIR
 readonly TEST_DIR="${MY_DIR}/../tests"
-readonly BATS_DIR="${TEST_DIR}/bats"
+readonly BATS_DIR="${MY_DIR}/../lib/test/bats/core"
 readonly BATS_BIN_DIR="${BATS_DIR}/bin"
 readonly BATS_EXECUTABLE="${BATS_BIN_DIR}/bats"
 

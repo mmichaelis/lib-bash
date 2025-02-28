@@ -2,8 +2,8 @@
 
 # Load the script to test
 setup() {
-  load 'test_helper/bats-support/load'
-  load 'test_helper/bats-assert/load'
+  load '../lib/test/bats/support/load'
+  load '../lib/test/bats/assert/load'
 
   source "${BATS_TEST_DIRNAME}/../lib_console.sh"
 }
