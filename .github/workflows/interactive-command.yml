@@ -29,6 +29,11 @@ jobs:
     runs-on: ${{ inputs.os }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - name: Install GNU tools on macOS
         if: runner.os == 'macos-latest' && inputs.install_gnu_tools == 'true'
         run: |
