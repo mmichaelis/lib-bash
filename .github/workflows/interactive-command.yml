@@ -38,7 +38,7 @@ jobs:
         if: ${{ inputs.install_gnu_tools }}
         run: |
           brew install gnu-sed gawk grep findutils coreutils gnu-tar gnu-time gnu-indent gnu-getopt gnu-which
-          brew install gdate gxargs gcut ghead gtail gtr guniq gwc gdiff
+          brew install gxargs gcut ghead gtail gtr guniq gwc gdiff
           echo 'export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"' >> $GITHUB_ENV
           echo 'export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"' >> $GITHUB_ENV
           echo 'export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"' >> $GITHUB_ENV
