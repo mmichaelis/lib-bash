@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install GNU tools on macOS
-        if: runner.os == 'macos-latest' && inputs.install_gnu_tools == 'true'
+        if: inputs.os == 'macos-latest' && inputs.install_gnu_tools == 'true'
         run: |
           brew install gnu-sed gawk grep findutils coreutils gnu-tar gnu-time gnu-indent gnu-getopt gnu-which
           brew install gdate gxargs gcut ghead gtail gtr guniq gwc gdiff
