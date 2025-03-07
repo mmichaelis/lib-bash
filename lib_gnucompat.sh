@@ -156,11 +156,16 @@ export DIFF
 function is_gnu() {
   local cmd="${1:?Error: No command provided to is_gnu function}"
 
-  # Check if the command is a GNU tool by expecting the version output
-  # to contain "GNU".
+  # Check if the command is available
+  if ! command -v "${cmd}" &>/dev/null; then
+    return 0
+  fi
+
+  ("${cmd}" --version &>/dev/null) || return 1
+
   local version_output
   version_output="$("${cmd}" --version 2>&1)"
-  if "${GREP}" -q "GNU" <<<"${version_output}"; then
+  if [[ "${version_output}" == *"GNU"* ]]; then
     return 0
   else
     return 1
