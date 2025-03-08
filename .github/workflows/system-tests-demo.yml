@@ -30,4 +30,6 @@ jobs:
         run: echo "ASSUME_GNU=${{ matrix.install_gnu_tools }}" >> $GITHUB_ENV
 
       - name: Run all demos
-        run: demo/all-demos.sh
+        run: |
+          demo/all-demos.sh
+          echo "Success: ${?}"
