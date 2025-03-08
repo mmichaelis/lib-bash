@@ -6,11 +6,11 @@ on:
       command:
         description: "Command to execute"
         required: true
-        default: "sed --version"
+        default: "demo/all-demos.sh"
       os:
         description: "Operating system to run the command on"
         required: true
-        default: "ubuntu-latest"
+        default: "macos-latest"
         type: choice
         options:
           - ubuntu-latest
@@ -21,6 +21,9 @@ on:
         default: false
         type: boolean
 
+run-name: |
+  ICE: ${{ inputs.command }} (${{ inputs.os }}, GNU? ${{ inputs.install_gnu_tools }})
+
 permissions:
   contents: read
 
@@ -29,30 +32,16 @@ jobs:
     runs-on: ${{ inputs.os }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
       - name: Install GNU tools on macOS
-        if: runner.os == 'macos-latest' && inputs.install_gnu_tools == 'true'
+        if: ${{ inputs.install_gnu_tools }}
         run: |
-          brew install gnu-sed gawk grep findutils coreutils gnu-tar gnu-time gnu-indent gnu-getopt gnu-which
-          brew install gdate gxargs gcut ghead gtail gtr guniq gwc gdiff
-          echo 'export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gnu-time/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gnu-indent/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gnu-getopt/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gdate/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gxargs/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gcut/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/ghead/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gtail/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gtr/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/guniq/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gwc/libexec/gnubin:$PATH"' >> $GITHUB_ENV
-          echo 'export PATH="/usr/local/opt/gdiff/libexec/gnubin:$PATH"' >> $GITHUB_ENV
+          bin/gnu-install.sh
 
       - name: Execute command
         run: ${{ inputs.command }}
