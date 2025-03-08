@@ -64,18 +64,34 @@ function demo_sed() {
   echo "SED Demo:"
 
   local -r input="  Hello, World!"
+  local result
 
   case "${ASSUME_GNU}" in
   yes | true)
     local -r sed_script='s/World/GNU/g'
     # This command will fail if the GNU version of `sed` is not available.
-    echo "${input}" | "${SED}" --regexp-extended "${sed_script}"
+    if echo "${input}" | "${SED}" --regexp-extended "${sed_script}"; then
+      result=$?
+    else
+      result=$?
+    fi
     ;;
   *)
     local -r sed_script='s/World/Non-GNU/g'
-    echo "${input}" | "${SED}" -r "${sed_script}"
+    if echo "${input}" | "${SED}" -r "${sed_script}"; then
+      result=$?
+    else
+      result=$?
+    fi
     ;;
   esac
+
+  if [ "${result}" -eq 0 ]; then
+    echo "Success!"
+  else
+    echo "Failure!"
+    exit 1
+  fi
 }
 
 function demo_awk() {
