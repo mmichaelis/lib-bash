@@ -64,34 +64,18 @@ function demo_sed() {
   echo "SED Demo:"
 
   local -r input="  Hello, World!"
-  local result
 
   case "${ASSUME_GNU}" in
   yes | true)
     local -r sed_script='s/World/GNU/g'
     # This command will fail if the GNU version of `sed` is not available.
-    if echo "${input}" | "${SED}" --regexp-extended "${sed_script}"; then
-      result=$?
-    else
-      result=$?
-    fi
+    echo "${input}" | "${SED}" --regexp-extended "${sed_script}"
     ;;
   *)
     local -r sed_script='s/World/Non-GNU/g'
-    if echo "${input}" | "${SED}" -r "${sed_script}"; then
-      result=$?
-    else
-      result=$?
-    fi
+    echo "${input}" | "${SED}" -r "${sed_script}"
     ;;
   esac
-
-  if [ "${result}" -eq 0 ]; then
-    echo "Success!"
-  else
-    echo "Failure!"
-    exit 1
-  fi
 }
 
 function demo_awk() {
@@ -277,20 +261,20 @@ function demo_diff() {
   echo "DIFF Demo:"
 
   local -r input1="Hello, World!"
-  local -r input2="Hello, Universe!"
   local -r file1="/tmp/file1.txt"
-  local -r file2="/tmp/file2.txt"
 
+  # We just need one file, as the test is just about the command execution,
+  # not the actual diff output. This spares us the need to handle different
+  # exit codes (0 for no difference, 1 for difference, 2 for error).
   echo "${input1}" >"${file1}"
-  echo "${input2}" >"${file2}"
 
   case "${ASSUME_GNU}" in
   yes | true)
     # This command will fail if the GNU version of `diff` is not available.
-    "${DIFF}" --brief "${file1}" "${file2}"
+    "${DIFF}" --normal "${file1}" "${file1}"
     ;;
   *)
-    "${DIFF}" "${file1}" "${file2}"
+    "${DIFF}" "${file1}" "${file1}"
     ;;
   esac
 }
