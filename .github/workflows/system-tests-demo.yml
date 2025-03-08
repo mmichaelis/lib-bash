@@ -10,9 +10,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         install_gnu_tools: [true, false]
-      exclude:
-        - os: ubuntu-latest
-          install_gnu_tools: true
+        exclude:
+          - os: ubuntu-latest
+            install_gnu_tools: true
 
     steps:
       - name: Checkout repository
