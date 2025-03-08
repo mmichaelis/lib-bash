@@ -36,23 +36,6 @@ declare -a GNU_TOOLS=(
   "wget"
 )
 
-### GNU Tools to update
-###
-### Some GNU tools are already installed on macOS, but may be outdated.
-### This list contains the tools that should be updated.
-###
-### References:
-### - https://github.com/asantra1/macOS-gnu-tools/blob/master/gnu-cmd.sh
-
-declare -a GNU_TOOLS_TO_UPDATE=(
-  "bash"
-  "emacs"
-  "gpatch"
-  "m4"
-  "make"
-  "nano"
-)
-
 ### Validate `brew` is installed
 if ! command -v brew &>/dev/null; then
   echo "Error: 'brew' is required. Please install it first."
@@ -61,10 +44,15 @@ fi
 
 ### Install GNU Tools
 for tool in "${GNU_TOOLS[@]}"; do
-  brew install "${tool}"
-done
-
-### Update GNU Tools
-for tool in "${GNU_TOOLS_TO_UPDATE[@]}"; do
-  brew install "${tool}"
+  if brew list --formula | grep -q "^${tool}\$"; then
+    if brew outdated --formula | grep -q "^${tool}\$"; then
+      echo "Updating ${tool}..."
+      brew upgrade "${tool}"
+    else
+      echo "${tool} is already installed and up-to-date."
+    fi
+  else
+    echo "Installing ${tool}..."
+    brew install "${tool}"
+  fi
 done
