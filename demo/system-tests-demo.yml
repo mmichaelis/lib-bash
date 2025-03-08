@@ -1,0 +1,33 @@
+name: System Tests Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-demos:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        install_gnu_tools: [true, false]
+      exclude:
+        - os: ubuntu-latest
+          install_gnu_tools: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: recursive
+
+      - name: Install GNU tools on macOS
+        if: matrix.os == 'macos-latest' && matrix.install_gnu_tools == 'true'
+        run: |
+          bin/gnu-install.sh
+
+      - name: Set ASSUME_GNU environment variable
+        run: echo "ASSUME_GNU=${{ matrix.install_gnu_tools }}" >> $GITHUB_ENV
+
+      - name: Run all demos
+        run: demo/all-demos.sh
