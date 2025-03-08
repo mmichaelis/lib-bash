@@ -6,7 +6,7 @@ on:
       command:
         description: "Command to execute"
         required: true
-        default: "sed --version"
+        default: "demo/all-demos.sh"
       os:
         description: "Operating system to run the command on"
         required: true
