@@ -4,8 +4,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "**/*.sh"
+      - ".github/workflows/shfmt.yml"
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [ready_for_review, synchronize]
+    paths:
+      - "**/*.sh"
+      - ".github/workflows/shfmt.yml"
   workflow_dispatch:
 
 permissions: {}

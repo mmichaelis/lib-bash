@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "**/*.sh"
+      - ".shellcheckrc"
+      - ".github/workflows/shellcheck.yml"
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [ready_for_review, synchronize]
+    paths:
+      - "**/*.sh"
+      - ".shellcheckrc"
+      - ".github/workflows/shellcheck.yml"
   workflow_dispatch:
 
 permissions: {}
