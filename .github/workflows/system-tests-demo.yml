@@ -1,6 +1,17 @@
 name: System Tests Demo
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.sh"
+      - ".github/workflows/system-tests-demo.yml"
+  pull_request:
+    types: [ready_for_review, synchronize]
+    paths:
+      - "**/*.sh"
+      - ".github/workflows/system-tests-demo.yml"
   workflow_dispatch:
 
 jobs:
@@ -19,7 +30,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          submodules: recursive
 
       - name: Install GNU tools on macOS
         if: ${{ matrix.os == 'macos-latest' && matrix.install_gnu_tools }}
