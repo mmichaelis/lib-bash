@@ -22,7 +22,7 @@ jobs:
           submodules: recursive
 
       - name: Install GNU tools on macOS
-        if: ${{ matrix.os == 'macos-latest' && matrix.install_gnu_tools == 'true' }}
+        if: ${{ matrix.os == 'macos-latest' && matrix.install_gnu_tools }}
         run: |
           bin/gnu-install.sh
 
