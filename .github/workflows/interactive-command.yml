@@ -21,6 +21,9 @@ on:
         default: false
         type: boolean
 
+run-name: |
+  ICE: ${{ inputs.command }} (${{ inputs.os }}, GNU? ${{ inputs.install_gnu_tools }})
+
 permissions:
   contents: read
 
