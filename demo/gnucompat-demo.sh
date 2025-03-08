@@ -66,7 +66,7 @@ function demo_sed() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     local -r sed_script='s/World/GNU/g'
     # This command will fail if the GNU version of `sed` is not available.
     echo "${input}" | "${SED}" --regexp-extended "${sed_script}"
@@ -84,7 +84,7 @@ function demo_awk() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # shellcheck disable=SC2016
     local -r awk_script='{ print "Hello, GNU!" }'
     # This command will fail if the GNU version of `sed` is not available.
@@ -104,7 +104,7 @@ function demo_grep() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     local -r grep_pattern="World"
     # This command will fail if the GNU version of `grep` is not available.
     echo "${input}" | "${GREP}" --only-matching "${grep_pattern}"
@@ -122,7 +122,7 @@ function demo_sort() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `sort` is not available.
     echo "${input}" | "${SORT}" --ignore-leading-blanks
     ;;
@@ -136,7 +136,7 @@ function demo_date() {
   echo "DATE Demo:"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `date` is not available.
     "${DATE}" --utc
     ;;
@@ -151,7 +151,7 @@ function demo_xargs() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `xargs` is not available.
     echo "${input}" | "${XARGS}" --no-run-if-empty echo
     ;;
@@ -167,7 +167,7 @@ function demo_cut() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `cut` is not available.
     echo "${input}" | "${CUT}" --characters=3
     ;;
@@ -183,7 +183,7 @@ function demo_head() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `head` is not available.
     echo "${input}" | "${HEAD}" --lines=1
     ;;
@@ -199,7 +199,7 @@ function demo_tail() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `tail` is not available.
     echo "${input}" | "${TAIL}" --lines=1
     ;;
@@ -215,7 +215,7 @@ function demo_tr() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `tr` is not available.
     echo "${input}" | "${TR}" --delete ' '
     ;;
@@ -231,7 +231,7 @@ function demo_uniq() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `uniq` is not available.
     echo "${input}" | "${UNIQ}" --count
     ;;
@@ -247,7 +247,7 @@ function demo_wc() {
   local -r input="  Hello, World!"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `wc` is not available.
     echo "${input}" | "${WC}" --words
     ;;
@@ -269,7 +269,7 @@ function demo_diff() {
   echo "${input2}" >"${file2}"
 
   case "${ASSUME_GNU}" in
-  yes)
+  yes | true)
     # This command will fail if the GNU version of `diff` is not available.
     "${DIFF}" --brief "${file1}" "${file2}"
     ;;
@@ -280,6 +280,7 @@ function demo_diff() {
 }
 
 function demo_all() {
+  echo "Running all demos, assuming GNU available: ${ASSUME_GNU}."
   demo_sed
   demo_awk
   demo_grep
