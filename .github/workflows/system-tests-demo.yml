@@ -22,7 +22,7 @@ jobs:
           submodules: recursive
 
       - name: Install GNU tools on macOS
-        if: matrix.os == 'macos-latest' && matrix.install_gnu_tools == 'true'
+        if: ${{ matrix.os == 'macos-latest' && matrix.install_gnu_tools == 'true' }}
         run: |
           bin/gnu-install.sh
 
@@ -32,4 +32,3 @@ jobs:
       - name: Run all demos
         run: |
           demo/all-demos.sh
-          echo "Success: ${?}"
