@@ -66,5 +66,5 @@ done
 
 ### Update GNU Tools
 for tool in "${GNU_TOOLS_TO_UPDATE[@]}"; do
-  brew upgrade "${tool}"
+  brew install "${tool}"
 done
