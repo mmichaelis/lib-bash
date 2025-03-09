@@ -6,6 +6,11 @@
 
 /tmp/
 
+## Build Artifacts
+
+/build/
+/dist/
+
 ## Logs & Output
 
 *.log
