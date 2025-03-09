@@ -1,89 +1,39 @@
-name: "Release"
+name: "Release – Complete"
 # concurrency: Ensures that for one branch the workflow is not running multiple
 # times at the same time as we will get trouble with the versions and pushes.
 concurrency: ci-${{ github.ref }}
 
 on:
-  workflow_dispatch:
-    inputs:
-      release_type:
-        description: |
-          Release Type: "minor" is typical for license update release. More   details in README.
-        required: true
-        default: "minor"
-        type: choice
-        options:
-          - major
-          - minor
-          - patch
-
-run-name: |
-  ${{ github.workflow }} (${{ github.event.inputs.release_type }})
+  push:
+    branches:
+      - main
+    paths:
+      - ".version"
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  release-prepare:
+  read-version:
     runs-on: ubuntu-latest
-
     outputs:
-      prev-version: ${{ steps.version.outputs.prev_version }}
       next-version: ${{ steps.version.outputs.next_version }}
-      pull-request-branch: ${{ steps.create-pull-request.outputs.pull-request-branch }}
-      pull-request-number: ${{ steps.create-pull-request.outputs.pull-request-number }}
-
     steps:
       - name: Checkout repository
-        id: checkout-prepare
+        id: checkout-version
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Update Version
+          sparse-checkout: |
+            .version
+      - name: Read Version
         id: version
         run: |
-          echo "prev_version=$(cat .version)" >> $GITHUB_OUTPUT
-          bin/version.sh ${{ github.event.inputs.release_type }}
           echo "next_version=$(cat .version)" >> $GITHUB_OUTPUT
-      - name: Create pull request
-        id: create-pull-request
-        # https://github.com/peter-evans/create-pull-request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "ci(release): Update version to ${{ steps.version.outputs.next_version }}"
-          branch: release/${{ steps.version.outputs.next_version }}
-          title: "Release ${{ steps.version.outputs.next_version }}"
-          body: "This pull request updates the version to ${{ steps.version.outputs.next_version }}."
-          base: main
-  release-await:
-    runs-on: ubuntu-latest
-    needs: release-prepare
-    steps:
-      - name: Wait for pull request to be merged
-        # https://github.com/actions/github-script
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const pr = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: ${{ needs.release-prepare.outputs.pull-request-number }}
-            });
-            while (pr.data.merged_at === null) {
-              await new Promise(resolve => setTimeout(resolve, 10000));
-              pr = await github.pulls.get({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: ${{ needs.release-prepare.outputs.pull-request-number }}
-              });
-            }
   release-tag:
     runs-on: ubuntu-latest
     needs:
-      - release-prepare
-      - release-await
+      - read-version
     outputs:
       tag-name: ${{ steps.tag-release.outputs.tag_name }}
     steps:
@@ -99,7 +49,7 @@ jobs:
       - name: Tag Release
         id: tag-release
         run: |
-          next_version="${{ needs.release-prepare.outputs.next-version }}"
+          next_version="${{ needs.read-version.outputs.next-version }}"
           tag_name="v${next_version}"
           git tag -a -m "Release ${next_version}" "${tag_name}"
           git push origin "${tag_name}"
@@ -108,7 +58,7 @@ jobs:
     # The Pull Request is merged. Now we can perform the release.
     runs-on: ubuntu-latest
     needs:
-      - release-prepare
+      - read-version
       - release-tag
     outputs:
       release-artifacts-url: ${{ steps.upload-artifacts.outputs.artifact-url }}
@@ -119,11 +69,16 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ needs.release-tag.outputs.tag-name }}
+          sparse-checkout: |
+            .version
+            README.md
+            UNLICENSE
+            lib_*.sh
       - name: Upload Release Artifacts
         id: upload-artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: lib-bash-${{ needs.release-prepare.outputs.next-version }}
+          name: lib-bash-${{ needs.read-version.outputs.next-version }}
           include-hidden-files: true
           path: |
             .version
@@ -156,7 +111,7 @@ jobs:
     # Output Markdown Report to $GITHUB_STEP_SUMMARY
     runs-on: ubuntu-latest
     needs:
-      - release-prepare
+      - read-version
       - release-tag
       - release-complete
     steps:
@@ -166,9 +121,7 @@ jobs:
           cat <<EOF >> $GITHUB_STEP_SUMMARY
           # ${{ github.workflow }} (${{ github.event.inputs.release_type }})
 
-          * **Version**
-            * Previous Version: ${{ needs.release-prepare.outputs.prev-version }}
-            * Next Version: ${{ needs.release-prepare.outputs.next-version }}
+          * **Version**: ${{ needs.read-version.outputs.next-version }}
           * [Release ${{ needs.release-tag.outputs.tag-name }}](
             ${{ needs.release-complete.outputs.release-url }}
             )
