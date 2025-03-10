@@ -91,13 +91,12 @@ jobs:
         # https://github.com/softprops/action-gh-release
         uses: softprops/action-gh-release@v2
         with:
+          fail_on_unmatched_files: true
           files: |
             ${{ needs.release-artifacts.outputs.release-artifacts-url }}
-          tag_name: ${{ needs.release-tag.outputs.tag-name }}
+          generate_release_notes: true
           name: ${{ needs.release-tag.outputs.tag-name }}
-          body: "Release ${{ needs.release-tag.outputs.tag-name }}"
-          draft: false
-          prerelease: false
+          tag_name: ${{ needs.release-tag.outputs.tag-name }}
   release-summary:
     # Output Markdown Report to $GITHUB_STEP_SUMMARY
     runs-on: ubuntu-latest
