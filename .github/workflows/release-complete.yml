@@ -23,9 +23,7 @@ jobs:
         id: checkout-version
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          sparse-checkout: |
-            .version
+          sparse-checkout: .
       - name: Read Version
         id: version
         run: |
@@ -40,8 +38,6 @@ jobs:
       - name: Checkout repository
         id: checkout-tag
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Set Git user
         run: |
           git config --global user.name "${{ github.actor }}"
@@ -51,7 +47,7 @@ jobs:
         run: |
           next_version="${{ needs.read-version.outputs.next-version }}"
           tag_name="v${next_version}"
-          git tag -a -m "Release ${next_version}" "${tag_name}"
+          git tag --annotate --message "Release ${next_version}" "${tag_name}"
           git push origin "${tag_name}"
           echo "tag_name=${tag_name}" >> $GITHUB_OUTPUT
   release-artifacts:
@@ -67,13 +63,8 @@ jobs:
         id: checkout-perform
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: ${{ needs.release-tag.outputs.tag-name }}
-          sparse-checkout: |
-            .version
-            README.md
-            UNLICENSE
-            lib_*.sh
+          sparse-checkout: .
       - name: Upload Release Artifacts
         id: upload-artifacts
         uses: actions/upload-artifact@v4
