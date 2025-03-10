@@ -51,6 +51,20 @@ ${COLOR_YELLOW}This is yellow text.${COLOR_RESET}
 EOF
 ```
 
+### lib_gnucompat
+
+Utility functions and dynamically defined constants for scripts preferring
+(or requiring) GNU compatible tooling. Meant especially for systems such as
+MacOS, to prefer GNU-Tools like `coreutils` by preferring prefixed tools like
+`gsed`, `gawk`.
+
+**Usage Examples**:
+
+```bash
+echo "Hello, World!" | \
+  "${SED}" --regexp-extended "s/World/GNU/g"
+```
+
 ### lib_init
 
 Apply general recommended strictness settings for Bash scripts. Includes support
