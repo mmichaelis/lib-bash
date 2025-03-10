@@ -33,7 +33,7 @@ jobs:
         id: checkout-prepare
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          sparse-checkout: .
       - name: Update Version
         id: version
         run: |
