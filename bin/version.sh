@@ -64,6 +64,7 @@ function main() {
   if [[ -z "${version_argument}" ]]; then
     echo "Current version: ${version}"
   else
+    echo "${major}.${minor}.${patch}" >"${VERSION_FILE}"
     echo "New version: ${major}.${minor}.${patch}"
   fi
 }
