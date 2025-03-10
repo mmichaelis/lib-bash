@@ -49,6 +49,8 @@ jobs:
           title: "Release ${{ steps.version.outputs.next_version }}"
           body: "This pull request updates the version to ${{ steps.version.outputs.next_version }}."
           base: main
+          labels: |
+            ignore-for-release
       - name: Summary
         id: summary
         run: |
