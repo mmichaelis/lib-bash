@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
+# ==============================================================================
 ###
-### GNUTools Compatibility Layer
+### # GNU-Tools Compatibility Layer
 ###
 ### This script provides compatibility functions for GNU tools on non-GNU
 ### systems, such as macOS.
 ###
-### Usage:
+### **Usage**:
 ###
-###   SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-###   readonly SCRIPT_DIR
-###   source "${SCRIPT_DIR}/lib-bash/lib_gnucompat.sh"
+### ```bash
+### MY_PATH="$(realpath "${BASH_SOURCE[0]}")"
+### SCRIPT_DIR="$(dirname "${MY_PATH}")"
+### readonly MY_PATH
+### readonly SCRIPT_DIR
+### readonly LIB_BASH_DIR="${SCRIPT_DIR}/lib_bash"
+### source "${LIB_BASH_DIR}/lib_gnucompat.sh"
+### ```
 ###
+# ==============================================================================
 
 # Guard variable to prevent multiple imports
 if [[ -n "${LIB_GNUCOMPAT_SH_INCLUDED:-}" ]]; then
@@ -26,13 +33,15 @@ readonly LIB_GNUCOMPAT_DIR
 source "${LIB_GNUCOMPAT_DIR}/lib_init.sh"
 
 # ------------------------------------------------------------------------------
-# Compatibility Functions
-#
-# These functions will return the corresponding GNU tool on non-GNU systems.
-# Such as `gsed` on macOS, which is the GNU version of `sed`.
+###
+### ## Tools Aliases
+###
+### These functions will return the corresponding GNU-tool on non-GNU systems,
+### if available. Such as `gsed` on macOS, which is the GNU version of `sed`.
+###
 # ------------------------------------------------------------------------------
 
-# GNU `sed` command
+### * `SED`: GNU `sed` command
 if command -v gsed &>/dev/null; then
   readonly SED="gsed"
 else
@@ -40,7 +49,7 @@ else
 fi
 export SED
 
-# GNU `awk` command
+### * `AWK`: GNU `awk` command
 if command -v gawk &>/dev/null; then
   readonly AWK="gawk"
 else
@@ -48,7 +57,7 @@ else
 fi
 export AWK
 
-# GNU `grep` command
+### * `GREP`: GNU `grep` command
 if command -v ggrep &>/dev/null; then
   readonly GREP="ggrep"
 else
@@ -56,7 +65,7 @@ else
 fi
 export GREP
 
-# GNU `find` command
+### * `FIND`: GNU `find` command
 if command -v gfind &>/dev/null; then
   readonly FIND="gfind"
 else
@@ -64,7 +73,7 @@ else
 fi
 export FIND
 
-# GNU `sort` command
+### * `SORT`: GNU `sort` command
 if command -v gsort &>/dev/null; then
   readonly SORT="gsort"
 else
@@ -72,7 +81,7 @@ else
 fi
 export SORT
 
-# GNU `tar` command
+### * `TAR`: GNU `tar` command
 if command -v gtar &>/dev/null; then
   readonly TAR="gtar"
 else
@@ -80,7 +89,7 @@ else
 fi
 export TAR
 
-# GNU `date` command
+### * `DATE`: GNU `date` command
 if command -v gdate &>/dev/null; then
   readonly DATE="gdate"
 else
@@ -88,7 +97,7 @@ else
 fi
 export DATE
 
-# GNU `xargs` command
+### * `XARGS`: GNU `xargs` command
 if command -v gxargs &>/dev/null; then
   readonly XARGS="gxargs"
 else
@@ -96,7 +105,7 @@ else
 fi
 export XARGS
 
-# GNU `cut` command
+### * `CUT`: GNU `cut` command
 if command -v gcut &>/dev/null; then
   readonly CUT="gcut"
 else
@@ -104,7 +113,7 @@ else
 fi
 export CUT
 
-# GNU `head` command
+### * `HEAD`: GNU `head` command
 if command -v ghead &>/dev/null; then
   readonly HEAD="ghead"
 else
@@ -112,7 +121,7 @@ else
 fi
 export HEAD
 
-# GNU `tail` command
+### * `TAIL`: GNU `tail` command
 if command -v gtail &>/dev/null; then
   readonly TAIL="gtail"
 else
@@ -120,7 +129,7 @@ else
 fi
 export TAIL
 
-# GNU `tr` command
+### * `TR`: GNU `tr` command
 if command -v gtr &>/dev/null; then
   readonly TR="gtr"
 else
@@ -128,7 +137,7 @@ else
 fi
 export TR
 
-# GNU `uniq` command
+### * `UNIQ`: GNU `uniq` command
 if command -v guniq &>/dev/null; then
   readonly UNIQ="guniq"
 else
@@ -136,7 +145,7 @@ else
 fi
 export UNIQ
 
-# GNU `wc` command
+### * `WC`: GNU `wc` command
 if command -v gwc &>/dev/null; then
   readonly WC="gwc"
 else
@@ -144,7 +153,7 @@ else
 fi
 export WC
 
-# GNU `diff` command
+### * `DIFF`: GNU `diff` command
 if command -v gdiff &>/dev/null; then
   readonly DIFF="gdiff"
 else
@@ -152,7 +161,27 @@ else
 fi
 export DIFF
 
-# Signal, if the given tool is a GNU tool
+# ------------------------------------------------------------------------------
+###
+### ## Functions
+###
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+###
+### ### is_gnu
+###
+### Signal, if the given tool is a GNU tool.
+###
+### **Usage**:
+###
+### ```bash
+### if ! is_gnu "sed"; then
+###   echo "Not a GNU tool."
+### fi
+### ```
+###
+# ------------------------------------------------------------------------------
 function is_gnu() {
   local cmd="${1:?Error: No command provided to is_gnu function}"
 
