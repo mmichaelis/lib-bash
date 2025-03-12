@@ -1,6 +1,6 @@
 # lib-bash – Bash Libraries
 
-![Lib-Bash Decorative Image](img/LibBashGitHubSocialPreview.jpg)
+![Lib-Bash Decorative Image](docs/img/LibBashGitHubSocialPreview.jpg)
 
 A set of libraries to use from within your Bash scripts.
 
