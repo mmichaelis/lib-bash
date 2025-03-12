@@ -23,7 +23,17 @@ readonly MY_PATH
 readonly SCRIPT_DIR
 readonly DOC_SINGLE="${SCRIPT_DIR}/doc-single.sh"
 readonly LIB_BASH_DIR="${SCRIPT_DIR}/.."
-readonly LIB_DOCS_DIR="${SCRIPT_DIR}/../docs/lib"
+readonly LIB_DOCS_DIR="${SCRIPT_DIR}/../docs/_lib"
+
+function front_matter() {
+  local title="${1?Must provide title}"
+  cat <<EOF
+---
+title: "${title} – lib-bash"
+permalink: /lib/${title}/
+---
+EOF
+}
 
 function main() {
   rm -rf "${LIB_DOCS_DIR}"
@@ -34,8 +44,10 @@ function main() {
   for lib in "${LIB_BASH_DIR}"/lib_*.sh; do
     local lib_name
     lib_name="$(basename "${lib}")"
-    local target="${LIB_DOCS_DIR}/${lib_name%.sh}.md"
-    "${DOC_SINGLE}" "${lib}" >"${target}"
+    lib_title="${lib_name%.sh}"
+    local target="${LIB_DOCS_DIR}/${lib_title}.md"
+    front_matter "${lib_title}" >"${target}"
+    "${DOC_SINGLE}" "${lib}" >>"${target}"
   done
 }
 

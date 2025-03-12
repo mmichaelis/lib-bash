@@ -1,3 +1,7 @@
+---
+title: "lib_scriptinfo – lib-bash"
+permalink: /lib/lib_scriptinfo/
+---
 
 # lib_scriptinfo.sh
 

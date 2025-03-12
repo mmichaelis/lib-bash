@@ -1,3 +1,7 @@
+---
+title: "lib_console – lib-bash"
+permalink: /lib/lib_console/
+---
 
 # lib_console.sh
 

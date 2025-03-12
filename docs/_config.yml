@@ -1,0 +1,38 @@
+# _config.yml
+title: lib-bash – Bash Libraries
+description: Documentation generated via Jekyll GitHub Action
+theme: jekyll-theme-minimal
+
+# Other configurations
+markdown: kramdown
+strict_front_matter: true
+collections:
+  lib:
+    output: true
+    sort_by: title
+    permalink: /:collection/:path/
+#plugins:
+#  - jekyll-feed
+#  - jekyll-seo-tag
+#  - jekyll-sitemap
+#  - jekyll-remote-theme
+#  - jekyll-redirect-from
+#  - jekyll-paginate
+#  - jekyll-archives
+#  - jekyll-github-metadata
+#  - jekyll-avatar
+#  - jekyll-mentions
+#  - jekyll-include-cache
+#  - jekyll-default-layout
+#  - jekyll-default-mimetype
+#  - jekyll-optional-front-matter
+#  - jekyll-readme-index
+#  - jekyll-relative-links
+#  - jekyll-remote-theme
+#  - jekyll-titles-from-headings
+#  - jekyll-redirect-from
+#  - jekyll-optional-front-matter
+#  - jekyll-remote-theme
+#  - jekyll-titles-from-headings
+#  - jekyll-redirect-from
+#
