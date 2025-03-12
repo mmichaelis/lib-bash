@@ -1,6 +1,6 @@
 # lib-bash – Bash Libraries
 
-![Lib-Bash Decorative Image](img/LibBashGitHubSocialPreview.jpg)
+![Lib-Bash Decorative Image](docs/img/LibBashGitHubSocialPreview.jpg)
 
 A set of libraries to use from within your Bash scripts.
 
@@ -49,6 +49,20 @@ ccat <<EOF
 ${COLOR_RED}This is red text.${COLOR_RESET}
 ${COLOR_YELLOW}This is yellow text.${COLOR_RESET}
 EOF
+```
+
+### lib_gnucompat
+
+Utility functions and dynamically defined constants for scripts preferring
+(or requiring) GNU compatible tooling. Meant especially for systems such as
+MacOS, to prefer GNU-Tools like `coreutils` by preferring prefixed tools like
+`gsed`, `gawk`.
+
+**Usage Examples**:
+
+```bash
+echo "Hello, World!" | \
+  "${SED}" --regexp-extended "s/World/GNU/g"
 ```
 
 ### lib_init

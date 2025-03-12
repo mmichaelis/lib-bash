@@ -38,6 +38,11 @@ jobs:
           echo "prev_version=$(cat .version)" >> $GITHUB_OUTPUT
           bin/version.sh ${{ github.event.inputs.release_type }}
           echo "next_version=$(cat .version)" >> $GITHUB_OUTPUT
+      - name: Update Documentation
+        id: update-docs
+        run: |
+          echo "Update documentation for version ${{ steps.version.outputs.next_version }}"
+          bin/docs.sh
       - name: Create pull request
         id: create-pull-request
         # https://github.com/peter-evans/create-pull-request

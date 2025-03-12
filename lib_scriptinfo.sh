@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
+# ==============================================================================
+###
+### # lib_scriptinfo.sh
 ###
 ### Include for script information functions.
 ###
-### Usage:
+### **Usage**:
 ###
-###   SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-###   readonly SCRIPT_DIR
-###   source "${SCRIPT_DIR}/lib-bash/lib_scriptinfo.sh"
+### ```bash
+### MY_PATH="$(realpath "${BASH_SOURCE[0]}")"
+### SCRIPT_DIR="$(dirname "${MY_PATH}")"
+### readonly MY_PATH
+### readonly SCRIPT_DIR
+### readonly LIB_BASH_DIR="${SCRIPT_DIR}/lib_bash"
+### source "${LIB_BASH_DIR}/lib_scriptinfo.sh"
+### ```
 ###
+# ==============================================================================
 
 # Guard variable to prevent multiple imports
 if [[ -n "${LIB_SCRIPTINFO_SH_INCLUDED:-}" ]]; then
@@ -23,12 +32,20 @@ readonly LIB_SCRIPTINFO_DIR
 source "${LIB_SCRIPTINFO_DIR}/lib_init.sh"
 
 # ------------------------------------------------------------------------------
-# Get script name (without path, with extension).
-#
-# Arguments:
-#   None
-# Returns:
-#   The script name.
+###
+### ## Functions
+###
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+###
+### ### get_script_name
+###
+### Get script name (without path, with extension).
+###
+### * **Arguments**: _None_
+### * **Returns**: The script name.
+###
 # ------------------------------------------------------------------------------
 function get_script_name() {
   echo "${0##*/}"
