@@ -1,3 +1,7 @@
+---
+title: "lib_init – lib-bash"
+permalink: /lib/lib_init/
+---
 
 # lib_init.sh
 

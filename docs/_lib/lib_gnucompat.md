@@ -1,3 +1,7 @@
+---
+title: "lib_gnucompat – lib-bash"
+permalink: /lib/lib_gnucompat/
+---
 
 # GNU-Tools Compatibility Layer
 
