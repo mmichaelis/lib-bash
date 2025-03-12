@@ -23,7 +23,7 @@ readonly MY_PATH
 readonly SCRIPT_DIR
 readonly DOC_SINGLE="${SCRIPT_DIR}/doc-single.sh"
 readonly LIB_BASH_DIR="${SCRIPT_DIR}/.."
-readonly LIB_DOCS_DIR="${SCRIPT_DIR}/../docs/lib"
+readonly LIB_DOCS_DIR="${SCRIPT_DIR}/../docs/_lib"
 
 function main() {
   rm -rf "${LIB_DOCS_DIR}"
