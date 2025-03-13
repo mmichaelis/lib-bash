@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # ==============================================================================
 ###
-### # GNU-Tools Compatibility Layer
+### # lib_gnucompat.sh
+###
+### GNU-Tools Compatibility Layer:
 ###
 ### This script provides compatibility functions for GNU tools on non-GNU
 ### systems, such as macOS.
