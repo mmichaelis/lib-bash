@@ -108,3 +108,19 @@ git subtree add --prefix=lib-bash \
 git subtree pull --prefix=lib-bash \
   https://github.com/mmichaelis/lib-bash.git main --squash
 ```
+
+## GitHub Pages
+
+### Build Locally
+
+To build the GitHub Pages locally, follow these steps:
+
+```bash
+cd docs
+bundle install
+bundle exec jekyll serve --source ./ --destination ../_site
+```
+
+Regarding supported plugins, see:
+
+* [Dependency versions | GitHub Pages](https://pages.github.com/versions/)
