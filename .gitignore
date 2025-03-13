@@ -10,6 +10,13 @@
 
 /build/
 /dist/
+/_site/
+
+## Jekyll
+
+_site/
+.jekyll-cache/
+.sass-cache/
 
 ## Logs & Output
 
