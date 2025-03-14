@@ -124,3 +124,22 @@ bundle exec jekyll serve --source ./ --destination ../_site
 Regarding supported plugins, see:
 
 * [Dependency versions | GitHub Pages](https://pages.github.com/versions/)
+
+## Kudos
+
+This would not exist without help, including GitHub Copilot.
+
+Other tools and applications, that helped me:
+
+* [Favicon Generator - Text to Favicon - favicon.io](https://favicon.io/favicon-generator/)
+
+  Used to generate the `favicon.ico`. For reproducibility, here are the chosen
+  configuration options:
+
+  * **Text**: `~$` (to represent a Bash prompt)
+  * **Background**: Rounded
+  * **Font Family**: Kanit
+  * **Font Variant**: Semi-bold 600 Normal
+  * **Font Size**: 110
+  * **Font Color**: `#AF5`
+  * **Background Color**: `#222`
