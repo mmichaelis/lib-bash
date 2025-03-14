@@ -133,12 +133,25 @@ Other tools and applications, that helped me:
 
 * [Favicon Generator - Text to Favicon - favicon.io](https://favicon.io/favicon-generator/)
 
-  Used to generate the `favicon.ico`. For reproducibility, here are the chosen
-  configuration options:
+  Used to generate first sketch of the `favicon.ico`. For reproducibility, here
+  are the chosen configuration options:
 
   * **Text**: `~$` (to represent a Bash prompt)
   * **Background**: Rounded
   * **Font Family**: Kanit
+  * **Font Variant**: Semi-bold 600 Normal
+  * **Font Size**: 110
+  * **Font Color**: `#AF5`
+  * **Background Color**: `#222`
+
+* [Favicon Generator: Create Custom Icons from Text | Favicon Maker](https://www.favicongenerator.io/)
+
+  Next level of `favicon.ico` generation. Chosen, because of the extra SVG
+  export, suitable, for example, to use in other favicon-tools.
+
+  * **Text**: `~$` (to represent a Bash prompt)
+  * **Background**: Rounded
+  * **Font Family**: Open Sans
   * **Font Variant**: Semi-bold 600 Normal
   * **Font Size**: 110
   * **Font Color**: `#AF5`
