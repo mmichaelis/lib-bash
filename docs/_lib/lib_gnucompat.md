@@ -3,7 +3,9 @@ title: "lib_gnucompat – lib-bash"
 permalink: /lib/lib_gnucompat/
 ---
 
-# GNU-Tools Compatibility Layer
+# lib_gnucompat.sh
+
+GNU-Tools Compatibility Layer:
 
 This script provides compatibility functions for GNU tools on non-GNU
 systems, such as macOS.
