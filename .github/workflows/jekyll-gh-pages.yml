@@ -1,9 +1,9 @@
 name: Deploy Jekyll with GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  #push:
-  #  branches: ["main"]
+  # Runs as soon as a release is published.
+  release:
+    types: [published]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
