@@ -1,6 +1,6 @@
 # _config.yml
 title: lib-bash – Bash Libraries
-description: Documentation generated via Jekyll GitHub Action
+description: A set of libraries to use from within your Bash scripts.
 lang: en-US
 theme: jekyll-theme-hacker
 
