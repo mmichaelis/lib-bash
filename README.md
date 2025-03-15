@@ -156,3 +156,8 @@ Other tools and applications, that helped me:
   * **Font Size**: 110
   * **Font Color**: `#AF5`
   * **Background Color**: `#222`
+
+* [realfavicongenerator.net: Favicon Generator for perfect icons on all browsers](https://realfavicongenerator.net/)
+
+  After recreating above sketches, adapted SVG directly and created favicon
+  configuration using the _RealFaviconGenerator_.
