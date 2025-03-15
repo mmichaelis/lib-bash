@@ -1,4 +1,7 @@
-# lib-bash – Bash Libraries
+# lib-bash – Bash Libraries ![GitHub Release](https://img.shields.io/github/v/release/mmichaelis/lib-bash?link=https%3A%2F%2Fgithub.com%2Fmmichaelis%2Flib-bash%2Freleases%2Flatest)
+
+![GitHub License](https://img.shields.io/github/license/mmichaelis/lib-bash?logo=unlicense&logoColor=%23fff&color=blue&link=https%3A%2F%2Funlicense.org%2F)
+![GitHub Pages](https://img.shields.io/github/deployments/mmichaelis/lib-bash/github-pages?logo=githubpages&logoColor=%23fff&label=pages&link=https%3A%2F%2Fmmichaelis.github.io%2Flib-bash%2F&link=https%3A%2F%2Fgithub.com%2Fmmichaelis%2Flib-bash%2Fdeployments%2Fgithub-pages)
 
 ![Lib-Bash Decorative Image](docs/img/LibBashGitHubSocialPreview.jpg)
 
@@ -161,3 +164,7 @@ Other tools and applications, that helped me:
 
   After recreating above sketches, adapted SVG directly and created favicon
   configuration using the _RealFaviconGenerator_.
+
+* [Shields.io](https://shields.io/)
+
+  Used to generate badges.
