@@ -23,6 +23,7 @@ declare -a GNU_TOOLS=(
   "ed"
   "findutils"
   "gawk"
+  "gnu-getopt"
   "gnu-indent"
   "gnu-sed"
   "gnu-tar"
